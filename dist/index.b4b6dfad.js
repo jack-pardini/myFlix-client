@@ -27421,7 +27421,7 @@ const MainView = ()=>{
             },
             Description: "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
             ImageURL: "https://m.media-amazon.com/images/I/31CauYmKHlL.jpg",
-            Year: "1999,",
+            Year: "1999",
             Featured: false
         },
         {
@@ -27476,7 +27476,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "+L7I5ZjzuNtzXDFDyX/h46Nnf2U=");
+_s(MainView, "cIeZe36iEM2txLuznXVX8Q/b3sc=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");

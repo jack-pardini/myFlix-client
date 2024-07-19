@@ -37,7 +37,7 @@ export const MainView = () => {
       },
       Description: 'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.',
       ImageURL: 'https://m.media-amazon.com/images/I/31CauYmKHlL.jpg',
-      Year: '1999,',
+      Year: '1999',
       Featured: false
     },
     {
