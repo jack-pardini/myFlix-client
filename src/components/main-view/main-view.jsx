@@ -55,7 +55,7 @@ export const MainView = () => {
       },
       Description: 'The story of Henry Hill and his life in the mafia, covering his relationship with his wife Karen and his mob partners Jimmy Conway and Tommy DeVito.',
       ImageURL: 'https://m.media-amazon.com/images/I/81NuuGhiNmL._SL1500_.jpg',
-      Year: '1990,',
+      Year: '1990',
       Featured: false
     }  
   ]);
