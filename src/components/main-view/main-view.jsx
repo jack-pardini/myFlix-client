@@ -20,6 +20,7 @@ export const MainView = () => {
             Director: movie.Director.Name,
             Genre: movie.Genre.Name,
             Year: movie.Year,
+            Featured: movie.Featured
           };
         });
 
