@@ -27399,8 +27399,7 @@ const MainView = ()=>{
                     ImageURL: movie.ImageURL,
                     Director: movie.Director.Name,
                     Genre: movie.Genre.Name,
-                    Year: movie.Year,
-                    Featured: movie.Featured
+                    Year: movie.Year
                 };
             });
             setMovies(moviesApi);
@@ -27411,14 +27410,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 33,
+        lineNumber: 32,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 38,
+        lineNumber: 37,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27429,12 +27428,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 44,
+                lineNumber: 43,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 41,
         columnNumber: 5
     }, undefined);
 };
@@ -27482,7 +27481,7 @@ MovieCard.propTypes = {
         Description: (0, _propTypesDefault.default).string.isRequired,
         ImageURL: (0, _propTypesDefault.default).string.isRequired,
         Year: (0, _propTypesDefault.default).string.isRequired,
-        Featured: (0, _propTypesDefault.default).boolean.isRequired,
+        Featured: (0, _propTypesDefault.default).boolean,
         Genre: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired,
             Description: (0, _propTypesDefault.default).string.isRequired
