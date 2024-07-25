@@ -21,7 +21,7 @@ MovieCard.propTypes = {
     Description: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
     Year: PropTypes.string.isRequired,
-    Featured: PropTypes.boolean,
+    Featured: PropTypes.boolean.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired

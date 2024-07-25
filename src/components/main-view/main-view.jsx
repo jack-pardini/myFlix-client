@@ -8,7 +8,7 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/")
+    fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/movies")
       .then((response) => response.json())
       .then((movies) => {
         const moviesApi = movies.map((movie) => {
@@ -18,7 +18,9 @@ export const MainView = () => {
             Description: movie.Description,
             ImageURL: movie.ImageURL,
             Director: movie.Director.Name,
-            Genre: movie.Genre.Name
+            Genre: movie.Genre.Name,
+            Year: movie.Year,
+            Featured: movie.Featured
           };
         });
 
