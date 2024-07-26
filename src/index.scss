@@ -7,3 +7,337 @@ $color: #000;
 img {
   width: 200px;  // Set the width of the image
 }
+
+
+$color_1: var(--dark-font-color);
+$color_2: var(--tertiary-color);
+$color_3: white;
+$color_4: var(--lightest-font-color);
+$font-family_1: 'EB Garamond', serif;
+$font-family_2: inherit;
+$background-color_1: var(--primary-color);
+$background-color_2: var(--secondary-color);
+$background-color_3: var(--tertiary-color);
+
+/* img {
+    border: var(--secondary-color);
+    border-width: 2px;
+    border-style:solid;
+    border-radius: 5px;
+} */
+/* Responsive adjustments for the navigation bar */
+:root {
+	--primary-color: #9cc79c;
+	--secondary-color: #1c761c;
+	--tertiary-color: #F08080;
+	--lightest-font-color: #fff;
+	--focus-red-color: #CD5C5C;
+	--dark-font-color: #0b340b;
+	--modal-color: #92c892;
+	--bodyfontsize: 25px;
+	--padding-margin-px: 30px;
+	--padding-margin-px-lg: 20px;
+	--font-weight-700px: 700px;
+	--max-width-700px: 700px;
+}
+a {
+	color: $color_1;
+	transition: transform 0.2s ease;
+	&:hover {
+		text-decoration: none;
+		transform: scale(1.05);
+	}
+	&:focus {
+		text-decoration: none;
+		transform: scale(1.05);
+	}
+	&:active {
+		color: $color_2;
+	}
+}
+body {
+	background-color: $background-color_1;
+	font-family: $font-family_1;
+	font-weight: 500px;
+	font-size: var(--bodyfontsize);
+	line-height: 1.5;
+	text-align: justify;
+	color: $color_1;
+	margin-right: 60px;
+	margin-bottom: 20px;
+}
+.img__favicon {
+	position: fixed;
+}
+h1 {
+	font-size: 46px;
+	font-weight: var(--font-weight-700px);
+	line-height: 1;
+	font-style: bold;
+	color: $color_1;
+	display: inline;
+	padding: 20px;
+}
+h2 {
+	font-size: 28px;
+	font-weight: var(--font-weight-700px);
+	line-height: 1.5;
+	font-style: bold;
+}
+h3 {
+	font-size: 24px;
+	font-weight: var(--font-weight-700px);
+	line-height: 1;
+	font-style: bold;
+}
+h4 {
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 0;
+}
+p {
+	color: $color_1;
+	font-size: var(--bodyfontsize);
+	line-height: 1.5;
+	font-style: normal;
+}
+button {
+	border: none;
+	display:inline;
+	font-family: $font-family_2;
+	background-color: $background-color_2;
+	color: $color_3;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 15px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+	transition: color .7s transform 0.2s ease;
+	margin: 12px;
+	width: 80px;
+	table-layout: fixed;
+	font-size: 20px;
+	padding: 1rem .75rem;
+	border-width: 6px;
+	&:hover {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+	}
+	&:focus {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+		border: 2px solid var(--focus-red-color);
+	}
+	&:active {
+		background-color: $background-color_1;
+	}
+}
+.button {
+	border: none;
+	display: inline-block;
+	font-family: $font-family_2;
+	background-color: $background-color_2;
+	color: $color_3;
+	text-decoration: none;
+	padding: var(--padding-margin-px);
+	border-radius: 15px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+	transition: color .7s transform 0.2s ease;
+	margin: 12px;
+	width: 100%;
+	table-layout: fixed;
+	font-size: 20px;
+	padding: 1rem .75rem;
+	border-width: 6px;
+	&:hover {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+	}
+	&:focus {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+	}
+}
+.button__secondary {
+	border: none;
+	display: inline-block;
+	font-family: $font-family_2;
+	background-color: $background-color_2;
+	color: $color_3;
+	text-decoration: none;
+	padding: var(--padding-margin-px);
+	border-radius: 15px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+	transition: color .7s transform 0.2s ease;
+	margin: 12px;
+	width: 100%;
+	table-layout: fixed;
+	font-size: 20px;
+	padding: 1rem .75rem;
+	border-width: 6px;
+	background-color: $background-color_2;
+	font-family: $font-family_2;
+	padding: var(--padding-margin-px);
+	border-radius: 10px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+	transition: color .7s transform 0.2s ease;
+	margin: 10px;
+	width: 100%;
+	table-layout: fixed;
+	font-size: 20px;
+	&:hover {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+		cursor: pointer;
+		background-color: $background-color_2;
+		color: $color_4;
+	}
+	&:focus {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+		cursor: pointer;
+		background-color: $background-color_2;
+		color: $color_4;
+	}
+}
+button__secondary {
+	&:hover {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+	}
+	&:focus {
+		cursor: pointer;
+		background-color: $background-color_3;
+		color: $color_1;
+		transform: scale(1.05);
+	}
+}
+html {
+	padding: var(--padding-margin-px);
+	margin: var(--padding-margin-px);
+	border: 5px solid var(--dark-font-color);
+	border-radius: 25px;
+	color: $color_1;
+}
+* {
+	box-sizing: border-box;
+}
+.item-container {
+	text-decoration: none;
+	list-style-type: none;
+	display: flex;
+	margin: 5px;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.item {
+	width: 20px;
+	height: 20px;
+	flex: 1 1 22%;
+	margin: 10px;
+	margin-bottom: 40px;
+}
+.pokemon {
+	padding: 10px 0 10px 0;
+}
+#modal-container {
+	display: none;
+	position: relative;
+}
+#modal-container.is-visible {
+	position: fixed;
+	padding: 20px;
+	box-sizing: border-box;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	margin: 0 auto;
+	z-index: 999;
+	overflow: auto;
+	display: grid;
+	text-align: center;
+}
+.modal {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	background: var(--modal-color);
+	padding: 35px;
+	width: 100%;
+	max-width: 700px;
+	height: auto;
+	text-align: center;
+	border-radius: 20px;
+	position: relative;
+	h1 {
+		margin-top: 0;
+	}
+	p {
+		margin-bottom: 0;
+	}
+}
+.modal-close {
+	float: right;
+	border: 0;
+	background: none;
+	background-color: $background-color_2;
+	color: $color_4;
+	font-family: $font-family_2;
+	padding: 10px;
+	border-radius: 10px;
+	border-bottom: 0px solid rgba(0, 0, 0, 0.3);
+	transition: color .7s transform 0.2s ease;
+	margin: -23px;
+	font-size: 20px;
+	position: absolute;
+	top: 40px;
+	right: 40px;
+}
+.pokemon-image {
+	height: 150px;
+	max-width: 150px;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+@media (max-width: 768px) {
+	.page-header {
+		flex-direction: column;
+		align-items: center;
+	}
+	.page-header__item {
+		flex: 0 0 auto;
+		width: auto;
+		margin-top: var(--padding-margin-px);
+	}
+	.navigation-list {
+		text-align: center;
+		li {
+			display: block;
+			margin-left: 0;
+			margin-bottom: var(--padding-margin-px);
+		}
+	}
+	.navigation-list__item--active {
+		display: block;
+	}
+	.navigation-list__item {
+		display: block;
+	}
+}
