@@ -27607,7 +27607,149 @@ const MainView = ()=>{
         lineNumber: 53,
         columnNumber: 5
     }, undefined);
-}; //   return (
+}; // import React from "react";
+ // import { useState, useEffect } from "react";
+ // import { MovieCard } from "../movie-card/movie-card";
+ // import { MovieView } from "../movie-view/movie-view";
+ // import { LoginView } from "../login-view/login-view";
+ // import { SignupView } from "../signup-view/signup-view";
+ // import { NavigationBar } from "../navigation-bar/navigation-bar";
+ // import { ProfileView } from "../profile-view/profile-view";
+ // import Row from "react-bootstrap/Row";
+ // import Col from 'react-bootstrap/Col';
+ // import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+ // export const MainView = () => {
+ //   const storedUser = JSON.parse(localStorage.getItem("user"));
+ //   const storedToken = localStorage.getItem("token");
+ //   const [user, setUser] = useState(storedUser? storedUser : null);
+ //   const [token, setToken] = useState(storedToken? storedToken : null);
+ //   const [movies, setMovies] = useState([]);
+ //   const [selectedMovie, setSelectedMovie] = useState(null);
+ //   useEffect(() => {
+ //     if (!token) return; 
+ //     fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/movies", {
+ //       headers: { Authorization: `Bearer ${token}` }
+ //     })
+ //       .then((response) => response.json())
+ //       .then((movies) => {
+ //         const moviesApi = movies.map((movie) => {
+ //           return {
+ //             id: movie._id,
+ //             Title: movie.Title,
+ //             Description: movie.Description,
+ //             ImageURL: movie.ImageURL,
+ //             Director: {
+ //               Name: movie.Director.Name,
+ //               Bio: movie.Director.Bio,
+ //               Birth: movie.Director.Birth,
+ //               Death: movie.Director.Death
+ //             },            
+ //             Genre: {
+ //               Name: movie.Genre.Name,
+ //               Description: movie.Genre.Description
+ //             },
+ //             Year: movie.Year,
+ //             Featured: movie.Featured
+ //           };
+ //         });
+ //         setMovies(moviesApi);
+ //       });
+ //   }, [token]);
+ //   const onLoggedIn = (user, token) => {
+ //     setUser(user);
+ //     setToken(token);
+ //     localStorage.setItem("user", JSON.stringify(user));
+ //     localStorage.setItem("token", token);
+ //   }
+ //   const onLoggedOut = () => {
+ //     setUser(null);
+ //     setToken(null);
+ //     localStorage.clear();
+ //   }
+ //   const updatedUser = user => {
+ //     setUser(user);
+ //     localStorage.setItem('user', JSON.stringify(user));
+ //   }
+ //   return (
+ //     <BrowserRouter>
+ //       <NavigationBar
+ //         user={user}
+ //         onLoggedOut={() => {
+ //           setUser(null);
+ //         }}
+ //       />
+ //       <Row className="justify-content-md-center">
+ //         <Routes>
+ //           <Route
+ //             path="/signup"
+ //             element={
+ //               <>
+ //                 {user ? (
+ //                   <Navigate to="/" />
+ //                 ) : (
+ //                   <Col md={5}>
+ //                     <SignupView />
+ //                   </Col>
+ //                 )}
+ //               </>
+ //             }
+ //           />
+ //           <Route
+ //             path="/login"
+ //             element={
+ //               <>
+ //                 {user ? (
+ //                   <Navigate to="/" />
+ //                 ) : (
+ //                   <Col md={5}>
+ //                     <LoginView onLoggedIn={(user) => setUser(user)} />
+ //                   </Col>
+ //                 )}
+ //               </>
+ //             }
+ //           />
+ //           <Route
+ //             path="/movies/:movieId"
+ //             element={
+ //               <>
+ //                 {!user ? (
+ //                   <Navigate to="/login" replace />
+ //                 ) : movies.length === 0 ? (
+ //                   <Col>The list is empty!</Col>
+ //                 ) : (
+ //                   <Col md={8}>
+ //                     <MovieView movies={movies} />
+ //                   </Col>
+ //                 )}
+ //               </>
+ //             }
+ //           />
+ //           <Route
+ //             path="/"
+ //             element={
+ //               <>
+ //                 {!user ? (
+ //                   <Navigate to="/login" replace />
+ //                 ) : movies.length === 0 ? (
+ //                   <Col>The list is empty!</Col>
+ //                 ) : (
+ //                   <>
+ //                     {movies.map((movie) => (
+ //                       <Col className="mb-4" key={movie.id} md={3}>
+ //                         <MovieCard movie={movie} />
+ //                       </Col>
+ //                     ))}
+ //                   </>
+ //                 )}
+ //               </>
+ //             }
+ //           />
+ //         </Routes>
+ //       </Row>
+ //     </BrowserRouter>
+ //   );
+ // };
+ //   return (
  //     <Row className="justify-content-md-center">
  //       {!user ? (
  //         <Col md={5}>
@@ -27745,7 +27887,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","../navigation-bar/navigation-bar":"bsPVM","react-router-dom":"9xmpe"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","../navigation-bar/navigation-bar":"bsPVM","react-router-dom":"9xmpe"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27848,37 +27990,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","prop-types":"7wKI2","react-bootstrap":"3AD9A","react":"21dqq","react-router-dom":"9xmpe"}],"d4xme":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","react":"21dqq","react-router-dom":"9xmpe"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -29982,7 +30094,37 @@ module.exports = require("c4c10cbba9862d5f");
     exports.jsxs = jsxs;
 })();
 
-},{"593632ccebda0d3a":"21dqq"}],"dVixI":[function(require,module,exports) {
+},{"593632ccebda0d3a":"21dqq"}],"d4xme":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"dVixI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "DEFAULT_BREAKPOINTS", ()=>DEFAULT_BREAKPOINTS);
@@ -42247,6 +42389,87 @@ const MovieView = ({ movies })=>{
  //     Year: PropTypes.string.isRequired
  //   }).isRequired,
  // };
+ // import React, { useState, useEffect } from "react";
+ // import { useParams } from "react-router";
+ // import { Link } from "react-router-dom";
+ // import { Button, Card, Row } from "react-bootstrap";
+ // export const MovieView = ({ movies, user, token, setUser }) => {
+ //     const { movieId } = useParams();
+ //     const [isFavorite, setIsFavorite] = useState(false);
+ //     const movie = movies.find((b) => b.id === movieId);
+ //     useEffect(() => {
+ //         if(user && user.FavoriteMovies)  {
+ //             const isFavorite = user.FavoriteMovies.includes(movieId);
+ //             setIsFavorite(isFavorite);
+ //         }
+ //     }, [movieId, user]);
+ //     const addtoFavorite = () => {
+ //         fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/${movieId}`,
+ //         {
+ //             method: "POST",
+ //             headers: { 
+ //                 "Content-Type": "application/json",
+ //                 Authorization: `Bearer ${token}` 
+ //             }
+ //         }).then((response) => {
+ //             if (response.ok) {
+ //               return response.json();
+ //             }
+ //         })
+ //         .then((data) => {
+ //             setUser(data);
+ //             localStorage.setItem("user", JSON.stringify(data));
+ //             setIsFavorite(true);
+ //         })
+ //         .catch((e) => {
+ //             console.log(e);
+ //         });       
+ //     };
+ //     const removefromFavorite = () => {
+ //         fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/${movieId}`,
+ //         {
+ //             method: "DELETE",
+ //             headers: { 
+ //                 "Content-Type": "application/json",
+ //                 Authorization: `Bearer ${token}` 
+ //             }
+ //         }).then((response) => {
+ //             if (response.ok) {
+ //               return response.json();
+ //             }
+ //         })
+ //         .then((data) => {
+ //             setUser(data);
+ //             localStorage.setItem("user", JSON.stringify(data));
+ //             setIsFavorite(false);
+ //         })
+ //         .catch((e) => {
+ //         console.log(e);
+ //         });       
+ //     };
+ //     return (
+ //         <Card className="h-100 w-100">
+ //         <Card.Img variant="top" src={movie.ImageURL} />
+ //             <Card.Body>
+ //                <Card.Header className="text-center fs-1">{movie.Title}</Card.Header>
+ //                <br></br>
+ //                     <Card.Text><strong>Director</strong> - {movie.Director.Name}</Card.Text>
+ //                     <Card.Text><strong>Genre</strong> - {movie.Genre.Name}</Card.Text>
+ //                     <Card.Text><strong>Description</strong> - {movie.Description}</Card.Text>
+ //             <Link to={`/`}>
+ //                 <button className="back-button">Back</button>
+ //             </Link>  
+ //             <div>
+ //                 {isFavorite ? (
+ //                     <Button variant="danger" onClick={removefromFavorite}>Remove from favorite</Button>
+ //                 ) : (
+ //                     <Button variant="primary" onClick={addtoFavorite}>Add to favorite</Button>   
+ //                 )}
+ //             </div>
+ //             </Card.Body>
+ //         </Card>
+ //     )
+ // }
 _s(MovieView, "e2L2DPdRH1AShA7yIOCsYRlzvlI=", false, function() {
     return [
         (0, _reactRouter.useParams)
@@ -42261,7 +42484,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","prop-types":"7wKI2","react-router":"dbWyW","react-router-dom":"9xmpe"}],"9YtA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","react-router":"dbWyW","react-router-dom":"9xmpe"}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42396,7 +42619,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80"}],"4OGiN":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj"}],"4OGiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$73d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42575,7 +42798,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
