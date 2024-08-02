@@ -73,7 +73,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     }, [movieId, user]);
 
     const addtoFavorite = () => {
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/${movieId}`,
+        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
         {
             method: "POST",
             headers: { 
@@ -95,7 +95,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         });       
     };
     const removefromFavorite = () => {
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/${movieId}`,
+        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
         {
             method: "DELETE",
             headers: { 
