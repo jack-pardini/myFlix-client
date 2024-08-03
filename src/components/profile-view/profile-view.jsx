@@ -31,7 +31,7 @@ export const ProfileView = ({user, token, updatedUser, onLoggedOut}) => {
         <Col>
           <Card>
             <Card.Header>
-              <UserInfo name={user.Username} email={user.Email}/>
+              <UserInfo email={user.Email} name={user.Username} />
             </Card.Header>
           </Card>
         </Col>
