@@ -92,7 +92,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         })
         .catch((e) => {
             console.log(e);
-        });       
+        });
     };
     const removefromFavorite = () => {
         fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
