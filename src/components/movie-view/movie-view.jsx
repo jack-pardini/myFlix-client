@@ -72,30 +72,63 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         }
     }, [movieId, user]);
 
-    const addtoFavorite = () => {
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
-        {
-            method: "POST",
-            headers: { 
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}` 
-            }
-        }).then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
+    // const addToFavorite = () => {
+    //     fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
+    //     {
+    //         method: "POST",
+    //         headers: { 
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${token}` 
+    //         }
+    //     }).then((response) => {
+    //         if (response.ok) {
+    //           return response.json();
+    //         }
+    //     })
+    //     .then((data) => {
+    //         setUser(data);
+    //         localStorage.setItem("user", JSON.stringify(data));
+    //         setIsFavorite(true);
+    //     })
+    //     .catch((e) => {
+    //         console.log(e);
+    //     });
+    // };
+
+    // start of chat gpt code
+    const addToFavorite = () => {
+      console.log(user);
+      user = JSON.parse(user);
+      console.log(user);
+      console.log(user.Username);
+      const token = localStorage.getItem("token");
+      console.log(movieId);
+      try {
+        const response = fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}` 
+          }
         })
-        .then((data) => {
-            setUser(data);
-            localStorage.setItem("user", JSON.stringify(data));
-            setIsFavorite(true);
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+        // if (!response.ok) {
+        //   const errorDetails = response.json();
+        //   throw new Error(`Failed to add movie to favorites: ${response.statusText} - ${errorDetails.message}`);
+        // }
+        // const data = response.json();
+        console.log('Movie added to favorites');
+      } catch (error) {
+        console.error('Error adding movie to favorites', error);
+        alert('Error: ${error.message');
+      }
     };
+
+    <button onClick={() => addToFavorite()}>Add to Favorites</button>
+
+// end of chatgpt code
+
     const removefromFavorite = () => {
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.username}/${movieId}`,
+        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movieId}`,
         {
             method: "DELETE",
             headers: { 
@@ -133,7 +166,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                 {isFavorite ? (
                     <Button variant="danger" onClick={removefromFavorite}>Remove from favorite</Button>
                 ) : (
-                    <Button variant="primary" onClick={addtoFavorite}>Add to favorite</Button>   
+                    <Button variant="primary" onClick={addToFavorite}>Add to favorite</Button>   
                 )}
             </div>
             </Card.Body>

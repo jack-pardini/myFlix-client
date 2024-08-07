@@ -109,6 +109,25 @@ export const MainView = () => {
             }
           />
           <Route
+            path="/users/:Username"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={5}>
+                    <ProfileView 
+                      user={user}
+                      token={token}
+                      updatedUser={updatedUser}
+                      onLoggedOut={onLoggedOut}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
             path="/movies/:movieId"
             element={
               <>

@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 import { UserInfo } from './user-info';
 import { ProfileUpdate } from './profile-update';
+import { FavoriteMovies } from './favorite-movies';
 
 export const ProfileView = ({user, token, updatedUser, onLoggedOut}) => {
   const ProfileDelete = () => {
@@ -28,10 +29,21 @@ export const ProfileView = ({user, token, updatedUser, onLoggedOut}) => {
   return (
     <Container>
       <Row className="justify-content-center">
+        {/* <Col>
+          <Card>
+            <Card.Header>
+              <FavoriteMovies 
+                // favoriteMovies={}
+              />
+            </Card.Header>
+          </Card>
+        </Col> */}
         <Col>
           <Card>
             <Card.Header>
-              <UserInfo email={user.Email} name={user.Username} />
+              <UserInfo 
+                email={user.Email}
+                name={user.Username} />
             </Card.Header>
           </Card>
         </Col>

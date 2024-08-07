@@ -95,6 +95,6 @@ export const ProfileUpdate = ({user, updatedUser}) => {
 };
 
 ProfileUpdate.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.string.isRequired,
   updatedUser: PropTypes.func.isRequired
 };
