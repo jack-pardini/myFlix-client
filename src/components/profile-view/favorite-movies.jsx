@@ -25,8 +25,8 @@ export const FavoriteMovies = ({ favoriteMovies }) => {
   );
 };
 
-FavoriteMovies.prototype = {
-  FavoriteMovies: PropTypes.array.isRequired
+FavoriteMovies.propTypes = {
+  favoriteMovies: PropTypes.array.isRequired
 };
 
-// export default FavoriteMovies;
+export default FavoriteMovies;
