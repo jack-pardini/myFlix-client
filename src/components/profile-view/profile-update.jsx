@@ -69,8 +69,7 @@ export const ProfileUpdate = ({user, updatedUser}) => {
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
-          value={password}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </Form.Group>

@@ -96,27 +96,30 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     // };
 
     // start of chat gpt code
-    const addToFavorite = () => {
+    const addToFavorite = async () => {
       console.log(user);
       user = JSON.parse(user);
       console.log(user);
       console.log(user.Username);
+
       const token = localStorage.getItem("token");
       console.log(movieId);
+
       try {
-        const response = fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+        const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}` 
           }
         })
-        // if (!response.ok) {
-        //   const errorDetails = response.json();
-        //   throw new Error(`Failed to add movie to favorites: ${response.statusText} - ${errorDetails.message}`);
-        // }
-        // const data = response.json();
+        if (!response.ok) {
+          const errorDetails = await response.json();
+          throw new Error(`Failed to add movie to favorites: ${response.statusText} - ${errorDetails.message}`);
+        }
+        const data = await response.json();
         console.log('Movie added to favorites');
+
       } catch (error) {
         console.error('Error adding movie to favorites', error);
         alert('Error: ${error.message');

@@ -29,4 +29,4 @@ FavoriteMovies.prototype = {
   FavoriteMovies: PropTypes.array.isRequired
 };
 
-export default FavoriteMovies;
+// export default FavoriteMovies;

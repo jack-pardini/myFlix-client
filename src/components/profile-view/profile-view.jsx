@@ -5,7 +5,7 @@ import { UserInfo } from './user-info';
 import { ProfileUpdate } from './profile-update';
 import { FavoriteMovies } from './favorite-movies';
 
-export const ProfileView = ({user, token, updatedUser, onLoggedOut}) => {
+export const ProfileView = ({FavoriteMovies, user, token, updatedUser, onLoggedOut}) => {
   const ProfileDelete = () => {
     fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, 
     {
@@ -29,21 +29,21 @@ export const ProfileView = ({user, token, updatedUser, onLoggedOut}) => {
   return (
     <Container>
       <Row className="justify-content-center">
-        {/* <Col>
+        <Col>
           <Card>
             <Card.Header>
               <FavoriteMovies 
-                // favoriteMovies={}
+                favoriteMovies={FavoriteMovies}
               />
             </Card.Header>
           </Card>
-        </Col> */}
+        </Col>
         <Col>
           <Card>
             <Card.Header>
               <UserInfo 
-                email={user.Email}
-                name={user.Username} />
+                email={JSON.parse(user).Email}
+                name={JSON.parse(user).Username} />
             </Card.Header>
           </Card>
         </Col>
