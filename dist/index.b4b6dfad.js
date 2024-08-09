@@ -42396,6 +42396,7 @@ const LoginView = ({ onLoggedIn })=>{
             console.log("Login response: ", data);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));
+                // localStorage.setItem("username", user.Username);
                 localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token);
             } else alert("No such user");
@@ -42420,7 +42421,7 @@ const LoginView = ({ onLoggedIn })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 51,
+                        lineNumber: 52,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -42431,13 +42432,13 @@ const LoginView = ({ onLoggedIn })=>{
                         minLength: "3"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 52,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 50,
+                lineNumber: 51,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -42447,7 +42448,7 @@ const LoginView = ({ onLoggedIn })=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 62,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -42457,13 +42458,13 @@ const LoginView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 63,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 61,
+                lineNumber: 62,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -42473,13 +42474,13 @@ const LoginView = ({ onLoggedIn })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 70,
+                lineNumber: 71,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 49,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined);
 };
@@ -42803,6 +42804,110 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$3c12.prelude(module);
 
 try {
+// import React, { useState, useEffect } from "react";
+// import { Container, Row, Col, Card, Button } from "react-bootstrap";
+// import { UserInfo } from './user-info';
+// import { ProfileUpdate } from './profile-update';
+// import FavoriteMovies from './favorite-movies';
+// console.log('FavoriteMovies component:', FavoriteMovies); // Check if component is imported
+// // // export const ProfileView = ({favoriteMovies, user, token, updatedUser, onLoggedOut}) => {
+// // //   const ProfileDelete = () => {
+// // //     fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, 
+// // //     {
+// // //       method: "DELETE",
+// // //       headers: {
+// // //         "Content-Type": "application/json",
+// // //         Authorization: `Bearer ${token}`
+// // //       },
+// // //     }
+// // //     ).then((response) => {
+// // //       console.log(response);
+// // //       if (response.ok) {
+// // //         console.log("Account deleted successfully!");
+// // //         onLoggedOut();
+// // //       } else {
+// // //         alert("Failed to delete account");
+// // //       }
+// // //     })
+// // //   }
+// export const ProfileView = () => {
+//   const [favoriteMovies, setFavoriteMovies] = useState([]);
+//   const [user, setUser] = useState(null);
+//   const token = localStorage.getItem('token');
+//   // const username = localStorage.getItem('username');
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         // console.log(`Fetching data for user: ${username}`)
+//         const user = localStorage.getItem('user'); // Assuming user is stored in local storage
+//         if (!user) {
+//           console.error('No user found in local storage');
+//           return;
+//         }
+//         console.log(`Fetching data for user: ${user}`);
+//         // Every "user" above was changed from "username" to "user" to match login-view.jsx
+//         const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, {
+//           method: 'GET',
+//           headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`,
+//           },
+//         });
+//         const data = await response.json();
+//         console.log('Fetched user data:', data);
+//         setUser(data);
+//         setFavoriteMovies(data.FavoriteMovies || []); // Check if this is the correct key name
+//       } catch (error) {
+//         console.error('Error fetching favorite movies:', error);
+//       }
+//     };
+//     fetchUserData();
+//   }, []);
+//   if (!user) return <div>Loading...</div>; // Handle the case when user data is still being fetched
+//   return (
+//     <Container>
+//       <Row className="justify-content-center">
+//         <Col>
+//           <Card>
+//             <Card.Header>
+//               <FavoriteMovies favoriteMovies={favoriteMovies} />
+//             </Card.Header>
+//           </Card>
+//         </Col>
+//         <Col>
+//           <Card>
+//             <Card.Header>
+//               <UserInfo 
+//                 email={JSON.parse(user).Email}
+//                 name={JSON.parse(user).Username} />
+//             </Card.Header>
+//           </Card>
+//         </Col>
+//         <Col xs={12}>
+//           <Card>
+//             <Card.Body>
+//               <ProfileUpdate
+//                 user={user}
+//                 token={token}
+//                 updatedUser={updatedUser}
+//               />
+//             </Card.Body>
+//             <Card.Body>
+//               <Button
+//                 variant="danger"
+//                 onClick={() => {
+//                   ProfileDelete();
+//                 }}>
+//                   Delete Account
+//               </Button>
+//             </Card.Body>
+//           </Card>
+//         </Col>
+//       </Row>
+//     </Container>
+//   );
+// };
+// export default ProfileView;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ProfileView", ()=>ProfileView);
@@ -42815,52 +42920,50 @@ var _profileUpdate = require("./profile-update");
 var _favoriteMovies = require("./favorite-movies");
 var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
 var _s = $RefreshSig$();
-console.log((0, _favoriteMoviesDefault.default));
-console.log(favoriteMovies);
 const ProfileView = ()=>{
     _s();
-    const [favoriteMovies1, setFavoriteMovies] = (0, _react.useState)([]);
+    const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
     const [user, setUser] = (0, _react.useState)(null);
     const token = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
     (0, _react.useEffect)(()=>{
         const fetchUserData = async ()=>{
+            if (!username) {
+                console.error("No username found in local storage");
+                return;
+            }
             try {
-                const token = localStorage.getItem("token");
-                const username = localStorage.getItem("username");
-                if (!username) {
-                    console.error("No username found in local storage");
-                    return;
-                }
                 console.log(`Fetching data for user: ${username}`);
-                const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, {
+                const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${username}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
                     }
                 });
+                console.log("Response: ", response);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 console.log("Fetched user data:", data);
-                setUser(data);
-                setFavoriteMovies(data.FavoriteMovies || []); // Ensure the data structure matches
+                if (data) {
+                    setUser(data);
+                    setFavoriteMovies(data.FavoriteMovies || []); // Check if the key is correct
+                } else console.error("User data is null or malformed");
             } catch (error) {
-                console.error("Error fetching favorite movies:", error);
+                console.error("Error fetching user data:", error);
             }
         };
         fetchUserData();
-    }, []);
-    (0, _react.useEffect)(()=>{
-        console.log("favoriteMovies state updated:", favoriteMovies1);
     }, [
-        favoriteMovies1
+        username
     ]);
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Loading..."
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 69,
+        lineNumber: 168,
         columnNumber: 21
-    }, undefined);
+    }, undefined); // Handle the case when user data is still being fetched
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
             className: "justify-content-center",
@@ -42869,51 +42972,51 @@ const ProfileView = ()=>{
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Header, {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
-                                favoriteMovies: favoriteMovies1
+                                favoriteMovies: favoriteMovies
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 79,
+                                lineNumber: 176,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 78,
+                            lineNumber: 175,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 77,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 76,
+                    lineNumber: 173,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Header, {
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfo.UserInfo), {
-                                email: JSON.parse(user).Email,
-                                name: JSON.parse(user).Username
+                                email: user.Email,
+                                name: user.Username
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 88,
+                                lineNumber: 183,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 87,
+                            lineNumber: 182,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 86,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 85,
+                    lineNumber: 180,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -42927,12 +43030,12 @@ const ProfileView = ()=>{
                                     updatedUser: updatedUser
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 97,
-                                    columnNumber: 13
+                                    lineNumber: 192,
+                                    columnNumber: 15
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 96,
+                                lineNumber: 191,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42944,38 +43047,38 @@ const ProfileView = ()=>{
                                     children: "Delete Account"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 104,
+                                    lineNumber: 199,
                                     columnNumber: 15
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 103,
+                                lineNumber: 198,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 95,
+                        lineNumber: 190,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 94,
+                    lineNumber: 189,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 75,
+            lineNumber: 172,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 74,
+        lineNumber: 171,
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileView, "BWnTx208eRXuxqtt2RhJZmHnKI8=");
+_s(ProfileView, "T2hNVi5ooVrhak7OCilkevdQ+lc=");
 _c = ProfileView;
 exports.default = ProfileView;
 var _c;
@@ -42986,7 +43089,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./profile-update":"gGXsm","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","./favorite-movies":"dTTQH"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./profile-update":"gGXsm","./favorite-movies":"dTTQH","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43037,7 +43140,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","prop-types":"7wKI2"}],"gGXsm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj"}],"gGXsm":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7c03 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43223,7 +43326,7 @@ $RefreshReg$(_c, "ProfileUpdate");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj","prop-types":"7wKI2","react-bootstrap":"3AD9A"}],"dTTQH":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"d4xme","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dR8Tj"}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43287,7 +43390,7 @@ const FavoriteMovies = ({ favoriteMovies })=>{
                     lineNumber: 14,
                     columnNumber: 13
                 }, undefined)
-            }, movie._id, false, {
+            }, movie, false, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
                 lineNumber: 13,
                 columnNumber: 11

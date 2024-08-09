@@ -10,7 +10,7 @@ export const FavoriteMovies = ({ favoriteMovies }) => {
         <p>No favorite movies</p>
       ) : (
         favoriteMovies.map((movie) => (
-          <Card key={movie._id} className="mb-3">
+          <Card key={movie} className="mb-3">
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Text>{movie.Director.Name}</Card.Text>
