@@ -113,7 +113,7 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) : (
-                  <Col md={5}>
+                  <Col md={12}>
                     <ProfileView 
                       user={user}
                       token={token}
@@ -133,7 +133,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
-                  <Col md={8}>
+                  <Col md={6}>
                     <MovieView setUser={setUser} token={token} user={user} movies={movies} />
                   </Col>
                 )}

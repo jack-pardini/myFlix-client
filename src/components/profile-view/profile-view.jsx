@@ -58,18 +58,18 @@ export const ProfileView = ({movies}) => {
   if (!user) return <div>Loading...</div>; // Handle the case when user data is still being fetched
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-      <Col>
+    <Container fluid className="p-0">
+      <Row className="no-gutters">
+        <Col md={6} className="p-2">
           <Card>
-            <Card.Header>
+            <Card.Body>
               <UserInfo 
                 email={user.Email}
                 name={user.Username} />
-            </Card.Header>
+            </Card.Body>
           </Card>
         </Col>
-        <Col xs={12}>
+        <Col md={6} className="p-2">
           <Card>
             <Card.Body>
               <ProfileUpdate
@@ -89,13 +89,15 @@ export const ProfileView = ({movies}) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col>
+      </Row>
+      <Row>
+        <Col md={12} className="p-2">
           <Card>
-            <Card.Header>
+            <Card.Body>
               <FavoriteMovies 
                 favoriteMovies={favoriteMovies}
                 movies={movies} />
-            </Card.Header>
+            </Card.Body>
           </Card>
         </Col>
       </Row>

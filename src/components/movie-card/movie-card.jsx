@@ -9,7 +9,7 @@ export const MovieCard = ({ movie }) => {
     <Card className="h-100">
       <Card.Img variant="top" src={movie.ImageURL} />
       <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Title><h2>{movie.Title}</h2></Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="link">

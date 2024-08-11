@@ -97,3 +97,4 @@ ProfileUpdate.propTypes = {
   user: PropTypes.object.isRequired,
   updatedUser: PropTypes.func.isRequired
 };
+
