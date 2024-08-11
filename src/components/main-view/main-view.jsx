@@ -12,8 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 export const MainView = () => {
-  // const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedUser = localStorage.getItem("user");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
@@ -65,7 +64,6 @@ export const MainView = () => {
   }
   const updatedUser = user => {
     setUser(user);
-    localStorage.setItem('user', JSON.stringify(user));
   }
 
   return (
@@ -119,8 +117,7 @@ export const MainView = () => {
                     <ProfileView 
                       user={user}
                       token={token}
-                      updatedUser={updatedUser}
-                      onLoggedOut={onLoggedOut}
+                      movies={movies}
                     />
                   </Col>
                 )}
@@ -168,80 +165,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-//   return (
-//     <Row className="justify-content-md-center">
-//       {!user ? (
-//         <Col md={5}>
-//           <LoginView onLoggedIn={(user) => setUser(user)} />
-//           or
-//           <SignupView />
-//         </Col>
-//       ) : selectedMovie ? (
-//         <>
-//           <button
-//             onClick={() => {
-//               setUser(null);
-//             }}
-//             className="logout-button"
-//             style={{ cursor: "pointer" }}
-//           >
-//             Logout
-//           </button>
-//           <Col md={8} style={{ border: "1px solid black" }}>
-//             <MovieView
-//               style={{ border: "1px solid green" }}
-//               movie={selectedMovie}
-//               onBackClick={() => setSelectedMovie(null)}
-//             />
-//           </Col>
-//         </>
-//       ) : movies.length === 0 ? (
-//         <>
-//           <button
-//             onClick={() => {
-//               setUser(null);
-//             }}
-//             className="logout-button"
-//             style={{ cursor: "pointer" }}
-//           >
-//             Logout
-//           </button>
-//           <div>The list is empty!</div>
-//         </>
-//       ) : (
-//         <>
-//           <button
-//             onClick={() => {
-//               setUser(null);
-//             }}
-//             className="logout-button"
-//             style={{ cursor: "pointer" }}
-//           >
-//             Logout
-//           </button>
-//           {movies.map((movie) => (
-//             <Col className="mb-5" key={movie.id} md={3}>
-//               <MovieCard
-//                 movie={movie}
-//                 onMovieClick={(newSelectedMovie) => {
-//                   setSelectedMovie(newSelectedMovie);
-//                 }}
-//               />
-//             </Col>
-//           ))}
-//         </>
-//       )}
-//     </Row>
-//   );
-// };

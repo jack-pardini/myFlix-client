@@ -20,7 +20,7 @@ export const ProfileUpdate = ({user, updatedUser}) => {
       Birthday: birthday
     }
     
-      fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, 
+      fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}`, 
       {
         method: "PUT",
         headers: {
@@ -53,7 +53,7 @@ export const ProfileUpdate = ({user, updatedUser}) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Update Info</h2>
+      <h2>Update</h2>
       <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -94,6 +94,6 @@ export const ProfileUpdate = ({user, updatedUser}) => {
 };
 
 ProfileUpdate.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   updatedUser: PropTypes.func.isRequired
 };
