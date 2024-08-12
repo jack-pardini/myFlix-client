@@ -1,11 +1,19 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FaHome, FaUser, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'; // Import icons
+import logo from '../../assets/myFlix-logo.png'
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" className="bg-primary text-white"> {/* Changed background color */}
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" className="fw-bold text-white">
+          <img 
+            src={logo} 
+            alt="Logo" 
+            style={{ width: '30px', height: 'auto', objectFit: 'contain' }}
+            className="navbar-logo"
+            />
           MyFlix App
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -13,24 +21,24 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           <Nav className="me-auto">
             {!user && (
               <>
-                <Nav.Link as={Link} to="/login">
-                  Login
+                <Nav.Link as={Link} to="/login" className="text-white">
+                  <FaSignInAlt /> Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
-                  Signup
+                <Nav.Link as={Link} to="/signup" className="text-white">
+                  <FaUser /> Signup
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
-                <Nav.Link as={Link} to="/">
-                  Home
+                <Nav.Link as={Link} to="/" className="text-white">
+                  <FaHome /> Home
                 </Nav.Link>
-                <Nav.Link as={Link} to={`/users/${user.Username}`}>
-                  Profile
+                <Nav.Link as={Link} to={`/users/${user.Username}`} className="text-white">
+                  <FaUser /> Profile
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>
-                  Logout
+                <Nav.Link onClick={onLoggedOut} className="text-white">
+                  <FaSignOutAlt /> Logout
                 </Nav.Link>
               </>
             )}

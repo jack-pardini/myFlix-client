@@ -107,7 +107,7 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       </Form.Group>
       <br />
       <div className="d-grid gap-2">
-        <Button variant="primary" type="submit">
+        <Button variant="secondary" type="submit">
           Edit Profile
         </Button>
       </div>

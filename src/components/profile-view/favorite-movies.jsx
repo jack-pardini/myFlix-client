@@ -59,7 +59,7 @@ export const FavoriteMovies = ({ user, setUser, favoriteMovies, setFavoriteMovie
                   </Card.Title>
                   <Card.Text>{movie.Director.Name}</Card.Text>
                   <Link to={`/movies/${movie.id}`}>
-                    <Button variant="primary">Movie Info</Button>
+                    <Button variant="secondary">Movie Info</Button>
                   </Link>
                   <Button
                     variant="danger"

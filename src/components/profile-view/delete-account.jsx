@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export const ProfileDelete = ({ user, token }) => {
+export const ProfileDelete = ({ user, setUser, token }) => {
   const navigate = useNavigate(); // Hook for navigating to other routes
 
   const handleDeleteAccount = async () => {
@@ -27,12 +27,15 @@ export const ProfileDelete = ({ user, token }) => {
       );
 
       if (!response.ok) {
+        const errorDetails = await response.json();
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       // If deletion is successful
       alert("Your account has been deleted.");
       localStorage.clear(); // Clear local storage
+      // Reset the user state (you might need to pass a function to do this)
+      setUser(null);
       navigate("/"); // Redirect to the home page or login page
     } catch (error) {
       console.error("Error deleting account:", error);
