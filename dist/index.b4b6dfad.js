@@ -42277,7 +42277,7 @@ const LoginView = ({ onLoggedIn })=>{
                 // localStorage.setItem("username", user.Username);
                 localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token);
-            } else alert("No such user");
+            } else alert("No such user or invalid credentials");
         }).catch((e)=>{
             alert("Something went wrong");
         });
@@ -42354,7 +42354,75 @@ const LoginView = ({ onLoggedIn })=>{
         lineNumber: 43,
         columnNumber: 5
     }, undefined);
-};
+}; // import { useState } from "react";
+ // import Button from "react-bootstrap/Button";
+ // import Form from "react-bootstrap/Form";
+ // export const LoginView = ({ onLoggedIn }) => {
+ //   const [username, setUsername] = useState("");
+ //   const [password, setPassword] = useState("");
+ //   const handleSubmit = (event) => {
+ //     // this prevents the default behavior of the form which is to reload the entire page
+ //     event.preventDefault();
+ //     const data = {
+ //       Username: username,
+ //       Password: password
+ //     };
+ //     fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/login", {
+ //       method: "POST",
+ //       headers: {
+ //         "Content-Type": "application/json"
+ //       },
+ //       body: JSON.stringify(data)
+ //     })
+ //     .then((response) => {
+ //       if (!response.ok) {
+ //         return response.json().then(err => {
+ //           throw new Error(err.message || 'Login failed');
+ //         });
+ //       }
+ //       return response.json();
+ //     })
+ //     .then((data) => {
+ //       console.log("Login response: ", data);
+ //       if (data.user) {
+ //         localStorage.setItem("user", JSON.stringify(data.user));
+ //         localStorage.setItem("token", data.token);
+ //         onLoggedIn(data.user, data.token);
+ //       } else {
+ //         alert("No such user or invalid credentials");
+ //       }
+ //     })
+ //     .catch((e) => {
+ //       alert(`Error: ${e.message}`);
+ //     });
+ //   };
+ //   return (
+ //     <Form onSubmit={handleSubmit}>
+ //       <Form.Group controlId="formUsername">
+ //         <Form.Label>Username:</Form.Label>
+ //         <Form.Control
+ //           type="text"
+ //           value={username}
+ //           onChange={(e) => setUsername(e.target.value)}
+ //           required
+ //           minLength="3" 
+ //         />
+ //       </Form.Group>
+ //       <Form.Group controlId="formPassword">
+ //         <Form.Label>Password:</Form.Label>
+ //         <Form.Control
+ //           type="password"
+ //           value={password}
+ //           onChange={(e) => setPassword(e.target.value)}
+ //           required
+ //         />
+ //       </Form.Group>
+ //       <Button variant="primary" type="submit" className="submit-button">
+ //         Submit
+ //       </Button>
+ //     </Form>
+ //   );
+ // };
 _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
 var _c;
@@ -42710,51 +42778,31 @@ const ProfileView = ({ movies })=>{
                     }
                 });
                 console.log("Response: ", response);
-                if (!response.ok) {
-                    console.error(`HTTP error! status: ${response.status}`);
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 console.log("Fetched user data:", data);
-                setUser(data);
-                setFavoriteMovies(data.FavoriteMovies || []);
+                if (data) {
+                    setUser(data);
+                    setFavoriteMovies(data.FavoriteMovies || []); // Check if the key is correct
+                } else console.error("User data is null or malformed");
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }
         };
-        // // Check if the data is valid
-        //   if (data && typeof data === 'object' && data.Username) {
-        //     setUser(data);
-        //     setFavoriteMovies(data.FavoriteMovies || []);
-        //   } else {
-        //     console.error('User data is null or malformed', data);
-        //   }
-        // This code is the same as the commented code below with extra console checks
-        //     if (data) {
-        //       setUser(data);
-        //       setFavoriteMovies(data.FavoriteMovies || []); // Check if the key is correct
-        //     } else {
-        //       console.error('User data is null or malformed');
-        //     }
-        //   } catch (error) {
-        //     console.error('Error fetching user data:', error);
-        //   }
-        // };
         fetchUserData();
     }, [
         token
     ]);
-    // // Define the updatedUser function
-    // const handleUpdatedUser = (updatedData) => {
-    //   setUser(updatedData);
-    // };
+    const handleUpdatedUser = (updatedData)=>{
+        setUser(updatedData);
+    };
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Loading..."
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 76,
+        lineNumber: 58,
         columnNumber: 21
-    }, undefined); // Handle the case when user data is still being fetched
+    }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         fluid: true,
         className: "p-0",
@@ -42772,22 +42820,22 @@ const ProfileView = ({ movies })=>{
                                     name: user.Username
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 84,
+                                    lineNumber: 66,
                                     columnNumber: 15
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 83,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 82,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 81,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -42799,10 +42847,10 @@ const ProfileView = ({ movies })=>{
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileUpdate.ProfileUpdate), {
                                         user: user,
                                         token: token,
-                                        updatedUser: setUser
+                                        updatedUser: handleUpdatedUser
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 93,
+                                        lineNumber: 75,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _deleteAccount.ProfileDelete), {
@@ -42810,29 +42858,29 @@ const ProfileView = ({ movies })=>{
                                         token: token
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 98,
+                                        lineNumber: 80,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 92,
+                                lineNumber: 74,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 91,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 90,
+                        lineNumber: 72,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 80,
+                lineNumber: 62,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -42845,36 +42893,37 @@ const ProfileView = ({ movies })=>{
                                 user: user,
                                 setUser: setUser,
                                 favoriteMovies: favoriteMovies,
+                                setFavoriteMovies: setFavoriteMovies,
                                 movies: movies
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 110,
+                                lineNumber: 92,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 109,
+                            lineNumber: 91,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 108,
+                        lineNumber: 90,
                         columnNumber: 11
                     }, undefined)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 107,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 106,
+                lineNumber: 88,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 79,
+        lineNumber: 61,
         columnNumber: 5
     }, undefined);
 };
@@ -42957,7 +43006,6 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$7c03.prelude(module);
 
 try {
-// corrected code
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ProfileUpdate", ()=>ProfileUpdate);
@@ -42975,9 +43023,11 @@ const ProfileUpdate = ({ user, updatedUser })=>{
     const [username, setUsername] = (0, _react.useState)(user.Username || "");
     const [password, setPassword] = (0, _react.useState)("");
     const [email, setEmail] = (0, _react.useState)(user.Email || "");
-    const [birthday, setBirthday] = (0, _react.useState)(user.Birthday || "");
+    // Format the birthday date properly
+    const formattedBirthday = user.Birthday ? user.Birthday.split("T")[0] : ""; // Use only the date part
+    const [birthday, setBirthday] = (0, _react.useState)(formattedBirthday);
     const handleSubmit = (event)=>{
-        event.preventDefault(); // Fixed the typo here
+        event.preventDefault();
         const data = {
             Username: username,
             Password: password,
@@ -42993,21 +43043,20 @@ const ProfileUpdate = ({ user, updatedUser })=>{
             body: JSON.stringify(data)
         }).then((response)=>{
             console.log("Response from update: ", response);
-            if (response.ok) {
-                console.log("Update successful!");
-                return response.json();
-            } else return response.json().then((err)=>{
+            if (!response.ok) return response.json().then((err)=>{
                 console.error("Update failed: ", err);
                 throw new Error("Update failed");
             });
+            return response.json(); // Return user data from the response
         }).then((data)=>{
-            console.log("Updated user data: ", data);
-            if (data) {
+            if (data && data.Username) {
+                console.log("Updated user data: ", data);
                 updatedUser(data);
                 setUsername(data.Username);
                 setEmail(data.Email);
-                setBirthday(data.Birthday);
-                window.location.reload();
+                setBirthday(data.Birthday.split("T")[0]);
+            // Remove reload to update the state immediately
+            // window.location.reload();
             } else console.error("User data is null or malformed");
         }).catch((e)=>{
             console.log("Error: ", e);
@@ -43155,7 +43204,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
         columnNumber: 5
     }, undefined);
 };
-_s(ProfileUpdate, "MMFqbC0WWgClv8aIZL42fhrQn/0=");
+_s(ProfileUpdate, "C9krOIE7bzk80IYvP4Pm6nGO1qs=");
 _c = ProfileUpdate;
 ProfileUpdate.propTypes = {
     user: (0, _propTypesDefault.default).object.isRequired,
@@ -43277,24 +43326,15 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
+const FavoriteMovies = ({ user, setUser, favoriteMovies, setFavoriteMovies, movies })=>{
     _s();
     const { movieId } = (0, _reactRouter.useParams)();
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(false);
-    const storedUser = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
-    (0, _react.useEffect)(()=>{
-        if (user && user.FavoriteMovies) {
-            const isFavorite = user.FavoriteMovies.includes(movieId);
-            setIsFavorite(isFavorite);
-        }
-    }, [
-        movieId,
-        user
-    ]);
-    let favoriteMoviesArr = movies.filter((m)=>favoriteMovies.includes(m.id));
-    const removeFromFavorite = (movieIdToRemove)=>{
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}/movies/${movieIdToRemove}`, {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    // Get the array of favorite movies based on the user data
+    const favoriteMoviesArr = movies.filter((m)=>favoriteMovies.includes(m.id));
+    const removeFromFavorite = (movieId)=>{
+        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -43302,18 +43342,13 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
             }
         }).then((response)=>{
             if (response.ok) return response.json();
+            throw new Error("Failed to remove from favorites");
         }).then((data)=>{
-            // Update the user state and localStorage
             setUser(data);
             localStorage.setItem("user", JSON.stringify(data));
-            // Remove the movie from the favoriteMoviesArr array
-            const updatedFavoriteMovies = favoriteMoviesArr.filter((movie)=>movie.id !== movieIdToRemove);
-            // Update the local state for favoriteMovies
-            setUser((prevUser)=>({
-                    ...prevUser,
-                    FavoriteMovies: updatedFavoriteMovies.map((movie)=>movie.id)
-                }));
-            setIsFavorite(false);
+            // Update the local state for immediate UI update
+            const updatedFavoriteMovies = favoriteMovies.filter((id)=>id !== movieId);
+            setFavoriteMovies(updatedFavoriteMovies); // Update the state to remove the movie
         }).catch((e)=>{
             console.log(e);
         });
@@ -43325,14 +43360,14 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
                     children: "Favorite Movies"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 64,
+                    lineNumber: 48,
                     columnNumber: 9
                 }, undefined),
                 favoriteMoviesArr.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     children: "No favorite movies"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 66,
+                    lineNumber: 50,
                     columnNumber: 11
                 }, undefined) : favoriteMoviesArr.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         xs: 12,
@@ -43347,7 +43382,7 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
                                         alt: movie.Title
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 72,
+                                        lineNumber: 56,
                                         columnNumber: 19
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
@@ -43355,19 +43390,19 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
                                             children: movie.Title
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                                            lineNumber: 74,
+                                            lineNumber: 58,
                                             columnNumber: 21
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 73,
+                                        lineNumber: 57,
                                         columnNumber: 19
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
-                                        children: movie.Director && movie.Director.Name ? movie.Director.Name : "Unknown Director"
+                                        children: movie.Director.Name
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 76,
+                                        lineNumber: 60,
                                         columnNumber: 19
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -43377,12 +43412,12 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
                                             children: "Movie Info"
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                                            lineNumber: 82,
+                                            lineNumber: 62,
                                             columnNumber: 21
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 81,
+                                        lineNumber: 61,
                                         columnNumber: 19
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -43391,47 +43426,47 @@ const FavoriteMovies = ({ user, setUser, favoriteMovies, movies })=>{
                                         children: "Remove Favorite"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 84,
+                                        lineNumber: 64,
                                         columnNumber: 19
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 71,
+                                lineNumber: 55,
                                 columnNumber: 17
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 70,
+                            lineNumber: 54,
                             columnNumber: 15
                         }, undefined)
                     }, movie.id, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 69,
+                        lineNumber: 53,
                         columnNumber: 13
                     }, undefined))
             ]
         }, void 0, true, {
             fileName: "src/components/profile-view/favorite-movies.jsx",
-            lineNumber: 63,
+            lineNumber: 47,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/profile-view/favorite-movies.jsx",
-        lineNumber: 62,
+        lineNumber: 46,
         columnNumber: 5
     }, undefined);
 };
-_s(FavoriteMovies, "Eu5S1baMK/gY/xYLj5Nss4rVVBI=", false, function() {
+_s(FavoriteMovies, "e2L2DPdRH1AShA7yIOCsYRlzvlI=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
 });
 _c = FavoriteMovies;
 FavoriteMovies.propTypes = {
-    user: (0, _propTypesDefault.default).object.isRequired,
-    setUser: (0, _propTypesDefault.default).func.isRequired,
     favoriteMovies: (0, _propTypesDefault.default).array.isRequired,
+    setUser: (0, _propTypesDefault.default).func.isRequired,
+    setFavoriteMovies: (0, _propTypesDefault.default).func.isRequired,
     movies: (0, _propTypesDefault.default).array.isRequired
 };
 exports.default = FavoriteMovies;

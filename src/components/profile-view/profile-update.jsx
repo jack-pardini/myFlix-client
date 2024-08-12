@@ -1,4 +1,3 @@
-// corrected code
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Button } from "react-bootstrap";
@@ -10,10 +9,12 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
   const [username, setUsername] = useState(user.Username || "");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email || "");
-  const [birthday, setBirthday] = useState(user.Birthday || "");
+  // Format the birthday date properly
+  const formattedBirthday = user.Birthday ? user.Birthday.split('T')[0] : ""; // Use only the date part
+  const [birthday, setBirthday] = useState(formattedBirthday);
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Fixed the typo here
+    event.preventDefault();
 
     const data = {
       Username: username,
@@ -25,31 +26,30 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
     fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json", // Fixed typo here
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     })
       .then((response) => {
         console.log("Response from update: ", response);
-        if (response.ok) {
-          console.log("Update successful!");
-          return response.json();
-        } else {
+        if (!response.ok) {
           return response.json().then(err => {
-            console.error('Update failed: ', err)
+            console.error('Update failed: ', err);
             throw new Error('Update failed');
           });
         }
+        return response.json(); // Return user data from the response
       })
       .then((data) => {
-        console.log('Updated user data: ', data)
-        if (data) {
+        if (data && data.Username) { // Check if data is valid
+          console.log('Updated user data: ', data);
           updatedUser(data);
           setUsername(data.Username);
           setEmail(data.Email);
-          setBirthday(data.Birthday);
-          window.location.reload();
+          setBirthday(data.Birthday.split('T')[0]);
+          // Remove reload to update the state immediately
+          // window.location.reload();
         } else {
           console.error('User data is null or malformed');
         }
@@ -115,6 +115,7 @@ ProfileUpdate.propTypes = {
   user: PropTypes.object.isRequired,
   updatedUser: PropTypes.func.isRequired,
 };
+
 
 
 
