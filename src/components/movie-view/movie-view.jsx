@@ -18,7 +18,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
 
   const addToFavorite = async () => {
     console.log(user);
-    console.log(user);
     console.log(user.Username);
 
     const token = localStorage.getItem("token");
@@ -41,8 +40,15 @@ export const MovieView = ({ movies, user, token, setUser }) => {
           `Failed to add movie to favorites: ${response.statusText} - ${errorDetails.message}`
         );
       }
-      const data = await response.json();
+      
+      const updatedUser = await response.json();
+      // const data = await response.json();
       console.log("Movie added to favorites");
+
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setIsFavorite(true);
+
     } catch (error) {
       console.error("Error adding movie to favorites", error);
       alert("Error: ${error.message");
@@ -91,6 +97,9 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         <Card.Text>
           <strong>Description</strong> - {movie.Description}
         </Card.Text>
+        <Card.Text>
+          <strong>Year</strong> - {movie.Year}
+        </Card.Text>
         <Link to={`/`}>
           <button className="back-button">Back</button>
         </Link>
@@ -109,57 +118,3 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     </Card>
   );
 };
-
-// import PropTypes from "prop-types";
-// import { useParams } from "react-router";
-// import { Link } from "react-router-dom";
-
-// export const MovieView = ({ movies }) => {
-//   const { movieId } = useParams();
-
-//   const movie = movies.find((m) => m.id === movieId);
-//   console.log(movie);
-//   console.log(movie.Title);
-//   return (
-//     <div>
-//       <div>
-//         <img className="w-100" src={movie.ImageURL} />
-//       </div>
-//       <div>
-//         <span>Title: </span>
-//         <span>{movie.Title}</span>
-//       </div>
-//       <div>
-//         <span>Description: </span>
-//         <span>{movie.Description}</span>
-//       </div>
-//       <div>
-//         <span>Year: </span>
-//         <span>{movie.Year}</span>
-//       </div>
-//       <div>
-//         <span>Genre: </span>
-//         <span>{movie.Genre.Name}</span>
-//       </div>
-//       <div>
-//         <span>Director: </span>
-//         <span>{movie.Director.Name}</span>
-//       </div>
-//       {/* <div>
-//         <span>Featured: </span>
-//         <span>{movie.Featured}</span>
-//       </div> */}
-//       <Link to={`/`}>
-//         <button className="back-button" style={{ cursor: "pointer" }}>Back</button>
-//       </Link>
-//     </div>
-//   );
-// };
-
-// // MovieView.propTypes = {
-// //   movie: PropTypes.shape({
-// //     Title: PropTypes.string.isRequired,
-// //     ImageURL: PropTypes.string.isRequired,
-// //     Year: PropTypes.string.isRequired
-// //   }).isRequired,
-// // };

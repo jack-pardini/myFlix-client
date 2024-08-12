@@ -37,13 +37,6 @@ export const LoginView = ({ onLoggedIn }) => {
       .catch((e) => {
         alert("Something went wrong");
       });
-    //   {
-    //   if (response.ok) {
-    //     onLoggedIn(username);
-    //   } else {
-    //     alert("Login failed");
-    //   }
-    // });
   };
 
   return (

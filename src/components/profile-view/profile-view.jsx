@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { UserInfo } from './user-info';
 import { ProfileUpdate } from './profile-update';
 import FavoriteMovies from './favorite-movies';
@@ -31,30 +31,47 @@ export const ProfileView = ({movies}) => {
         console.log('Response: ', response);
 
         if (!response.ok) {
+          console.error(`HTTP error! status: ${response.status}`);
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
         console.log('Fetched user data:', data);
-
-        if (data) {
-          setUser(data);
-          setFavoriteMovies(data.FavoriteMovies || []); // Check if the key is correct
-        } else {
-          console.error('User data is null or malformed');
-        }
+        setUser(data);
+        setFavoriteMovies(data.FavoriteMovies || []);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
+        
+      // // Check if the data is valid
+      //   if (data && typeof data === 'object' && data.Username) {
+      //     setUser(data);
+      //     setFavoriteMovies(data.FavoriteMovies || []);
+      //   } else {
+      //     console.error('User data is null or malformed', data);
+      //   }
+      
+      // This code is the same as the commented code below with extra console checks
+
+    //     if (data) {
+    //       setUser(data);
+    //       setFavoriteMovies(data.FavoriteMovies || []); // Check if the key is correct
+    //     } else {
+    //       console.error('User data is null or malformed');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error fetching user data:', error);
+    //   }
+    // };
 
     fetchUserData();
   }, [token]);
 
-  // Define the updatedUser function
-  const handleUpdatedUser = (updatedData) => {
-    setUser(updatedData);
-  };
+  // // Define the updatedUser function
+  // const handleUpdatedUser = (updatedData) => {
+  //   setUser(updatedData);
+  // };
 
   if (!user) return <div>Loading...</div>; // Handle the case when user data is still being fetched
 
@@ -76,7 +93,7 @@ export const ProfileView = ({movies}) => {
               <ProfileUpdate
                 user={user}
                 token={token}
-                updatedUser={handleUpdatedUser}
+                updatedUser={setUser}
               />
               <ProfileDelete
                 user={user}
@@ -91,8 +108,11 @@ export const ProfileView = ({movies}) => {
           <Card>
             <Card.Body>
               <FavoriteMovies 
+                user={user}
+                setUser={setUser}
                 favoriteMovies={favoriteMovies}
-                movies={movies} />
+                movies={movies} 
+              />
             </Card.Body>
           </Card>
         </Col>
