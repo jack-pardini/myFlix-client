@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { UserInfo } from './user-info';
 import { ProfileUpdate } from './profile-update';
 import FavoriteMovies from './favorite-movies';
+import { ProfileDelete } from "./delete-account";
 
 export const ProfileView = ({movies}) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -77,15 +78,10 @@ export const ProfileView = ({movies}) => {
                 token={token}
                 updatedUser={handleUpdatedUser}
               />
-            </Card.Body>
-            <Card.Body>
-              <Button
-                variant="danger"
-                onClick={() => {
-                  ProfileDelete();
-                }}>
-                  Delete Account
-              </Button>
+              <ProfileDelete
+                user={user}
+                token={token}
+              />
             </Card.Body>
           </Card>
         </Col>

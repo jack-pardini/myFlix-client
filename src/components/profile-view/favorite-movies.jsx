@@ -9,6 +9,8 @@ export const FavoriteMovies = ({ user, setUser, favoriteMovies, movies }) => {
   const { movieId } = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
   const movie = movies.find((b) => b.id === movieId);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (user && user.FavoriteMovies) {
@@ -20,9 +22,6 @@ export const FavoriteMovies = ({ user, setUser, favoriteMovies, movies }) => {
   let favoriteMoviesArr = movies.filter((m) => favoriteMovies.includes(m.id));
 
   const removeFromFavorite = () => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("token");
-
     fetch(
       `https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}/movies/${movieId}`,
       {
@@ -99,10 +98,7 @@ export const FavoriteMovies = ({ user, setUser, favoriteMovies, movies }) => {
                   <Card.Text>{movie.Director.Name}</Card.Text>
                   <Link to={`/movies/${movie.id}`}>
                     <Button variant="primary">Movie Info</Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => removeFromFavorite(movie.id)}
-                    >
+                    <Button variant="danger" onClick={removeFromFavorite}>
                       Remove Favorite
                     </Button>
                   </Link>

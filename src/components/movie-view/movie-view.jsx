@@ -7,6 +7,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
   const movie = movies.find((b) => b.id === movieId);
+  const storedUser = user;
 
   useEffect(() => {
     if (user && user.FavoriteMovies) {
@@ -17,7 +18,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
 
   const addToFavorite = async () => {
     console.log(user);
-    storedUser = user;
     console.log(user);
     console.log(user.Username);
 
