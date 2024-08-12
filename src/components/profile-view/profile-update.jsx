@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 
 export const ProfileUpdate = ({ user, updatedUser }) => {
   const token = localStorage.getItem("token");
+  const storedUser = JSON.parse(localStorage.getItem('user'));
 
   // Initialize state with the current user's data
   const [username, setUsername] = useState(user.Username || "");
@@ -23,7 +24,10 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       Birthday: birthday,
     };
 
-    fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, {
+    console.log("Data to be sent:", data); // Add this line to log the data
+    console.log("Token:", token);
+
+    fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -34,9 +38,9 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       .then((response) => {
         console.log("Response from update: ", response);
         if (!response.ok) {
-          return response.json().then(err => {
-            console.error('Update failed: ', err);
-            throw new Error('Update failed');
+          return response.text().then((text) => {
+            console.error('Error: ', text);
+            throw new Error(text);
           });
         }
         return response.json(); // Return user data from the response

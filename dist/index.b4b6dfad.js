@@ -27617,7 +27617,9 @@ const MainView = ()=>{
                                             className: "mb-4",
                                             md: 3,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                                                movie: movie
+                                                movie: movie,
+                                                user: user,
+                                                setUser: setUser
                                             }, void 0, false, {
                                                 fileName: "src/components/main-view/main-view.jsx",
                                                 lineNumber: 155,
@@ -27680,7 +27682,54 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
-const MovieCard = ({ movie })=>{
+const MovieCard = ({ movie, user, setUser })=>{
+    const isFavorite = user.FavoriteMovies.includes(movie.id);
+    const addToFavorite = async ()=>{
+        const token = localStorage.getItem("token");
+        try {
+            const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                const errorDetails = await response.json();
+                throw new Error(`Failed to add movie to favorites: ${response.statusText} - ${errorDetails.message}`);
+            }
+            const updatedUser = await response.json();
+            setUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            console.log("Movie added to favorites");
+        } catch (error) {
+            console.error("Error adding movie to favorites", error);
+            alert(`Error: ${error.message}`);
+        }
+    };
+    const removeFromFavorite = async ()=>{
+        const token = localStorage.getItem("token");
+        try {
+            const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if (!response.ok) {
+                const errorDetails = await response.json();
+                throw new Error(`Failed to remove movie from favorites: ${response.statusText} - ${errorDetails.message}`);
+            }
+            const updatedUser = await response.json();
+            setUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
+            console.log("Movie removed from favorites");
+        } catch (error) {
+            console.error("Error removing movie from favorites", error);
+            alert(`Error: ${error.message}`);
+        }
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100",
         children: [
@@ -27689,7 +27738,7 @@ const MovieCard = ({ movie })=>{
                 src: movie.ImageURL
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 10,
+                lineNumber: 67,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27699,19 +27748,19 @@ const MovieCard = ({ movie })=>{
                             children: movie.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 12,
+                            lineNumber: 69,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 12,
+                        lineNumber: 69,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         children: movie.Director.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 13,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -27721,29 +27770,46 @@ const MovieCard = ({ movie })=>{
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 15,
+                            lineNumber: 72,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 14,
+                        lineNumber: 71,
                         columnNumber: 9
+                    }, undefined),
+                    isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                        variant: "danger",
+                        onClick: removeFromFavorite,
+                        children: "Remove Favorite"
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 75,
+                        columnNumber: 11
+                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                        variant: "primary",
+                        onClick: addToFavorite,
+                        children: "Add Favorite"
+                    }, void 0, false, {
+                        fileName: "src/components/movie-card/movie-card.jsx",
+                        lineNumber: 79,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 11,
+                lineNumber: 68,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 9,
+        lineNumber: 66,
         columnNumber: 5
     }, undefined);
 };
 _c = MovieCard;
-// Here is where we define all the props contraints for the MovieCard
+// Define prop types for MovieCard
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         Title: (0, _propTypesDefault.default).string.isRequired,
@@ -27751,7 +27817,6 @@ MovieCard.propTypes = {
         ImageURL: (0, _propTypesDefault.default).string.isRequired,
         Year: (0, _propTypesDefault.default).string.isRequired,
         Genre: (0, _propTypesDefault.default).array.isRequired,
-        // Featured: PropTypes.boolean,
         Genre: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired,
             Description: (0, _propTypesDefault.default).string.isRequired
@@ -27762,7 +27827,9 @@ MovieCard.propTypes = {
             Birth: (0, _propTypesDefault.default).string.isRequired,
             Death: (0, _propTypesDefault.default).string
         })
-    }).isRequired
+    }).isRequired,
+    user: (0, _propTypesDefault.default).object.isRequired,
+    setUser: (0, _propTypesDefault.default).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "MovieCard");
@@ -42243,6 +42310,69 @@ var prevRefreshSig = window.$RefreshSig$;
 $parcel$ReactRefreshHelpers$9fee.prelude(module);
 
 try {
+// import { useState } from "react";
+// import Button from "react-bootstrap/Button";
+// import Form from "react-bootstrap/Form";
+// export const LoginView = ({ onLoggedIn }) => {
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
+//   const handleSubmit = (event) => {
+//     // this prevents the default behavior of the form which is to reload the entire page
+//     event.preventDefault();
+//     const data = {
+//       Username: username,
+//       Password: password
+//     };
+//     fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/login", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(data)
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log("Login response: ", data);
+//         if (data.user) {
+//           localStorage.setItem("user", JSON.stringify(data.user));
+//           // localStorage.setItem("username", user.Username);
+//           localStorage.setItem("token", data.token);
+//           onLoggedIn(data.user, data.token);
+//         } else {
+//           alert("No such user or invalid credentials");
+//         }
+//       })
+//       .catch((e) => {
+//         alert("Something went wrong");
+//       });
+//   };
+//   return (
+//     <Form onSubmit={handleSubmit}>
+//       <Form.Group controlId="formUsername">
+//         <Form.Label>Username:</Form.Label>
+//         <Form.Control
+//           type="text"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           required
+//           minLength="3" 
+//         />
+//       </Form.Group>
+//       <Form.Group controlId="formPassword">
+//         <Form.Label>Password:</Form.Label>
+//         <Form.Control
+//           type="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           required
+//         />
+//       </Form.Group>
+//       <Button variant="primary" type="submit" className="submit-button">
+//         Submit
+//       </Button>
+//     </Form>
+//   );
+// };
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "LoginView", ()=>LoginView);
@@ -42270,16 +42400,20 @@ const LoginView = ({ onLoggedIn })=>{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
-        }).then((response)=>response.json()).then((data)=>{
+        }).then((response)=>{
+            if (!response.ok) return response.json().then((err)=>{
+                throw new Error(err.message || "Login failed");
+            });
+            return response.json();
+        }).then((data)=>{
             console.log("Login response: ", data);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));
-                // localStorage.setItem("username", user.Username);
                 localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token);
             } else alert("No such user or invalid credentials");
         }).catch((e)=>{
-            alert("Something went wrong");
+            alert(`Error: ${e.message}`);
         });
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default), {
@@ -42292,7 +42426,7 @@ const LoginView = ({ onLoggedIn })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 45,
+                        lineNumber: 122,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -42303,13 +42437,13 @@ const LoginView = ({ onLoggedIn })=>{
                         minLength: "3"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 46,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 44,
+                lineNumber: 121,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Group, {
@@ -42319,7 +42453,7 @@ const LoginView = ({ onLoggedIn })=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 56,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
@@ -42329,13 +42463,13 @@ const LoginView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 57,
+                        lineNumber: 134,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 55,
+                lineNumber: 132,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
@@ -42345,84 +42479,16 @@ const LoginView = ({ onLoggedIn })=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 64,
+                lineNumber: 141,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 43,
+        lineNumber: 120,
         columnNumber: 5
     }, undefined);
-}; // import { useState } from "react";
- // import Button from "react-bootstrap/Button";
- // import Form from "react-bootstrap/Form";
- // export const LoginView = ({ onLoggedIn }) => {
- //   const [username, setUsername] = useState("");
- //   const [password, setPassword] = useState("");
- //   const handleSubmit = (event) => {
- //     // this prevents the default behavior of the form which is to reload the entire page
- //     event.preventDefault();
- //     const data = {
- //       Username: username,
- //       Password: password
- //     };
- //     fetch("https://jp-movies-flix-9cb054b3ade2.herokuapp.com/login", {
- //       method: "POST",
- //       headers: {
- //         "Content-Type": "application/json"
- //       },
- //       body: JSON.stringify(data)
- //     })
- //     .then((response) => {
- //       if (!response.ok) {
- //         return response.json().then(err => {
- //           throw new Error(err.message || 'Login failed');
- //         });
- //       }
- //       return response.json();
- //     })
- //     .then((data) => {
- //       console.log("Login response: ", data);
- //       if (data.user) {
- //         localStorage.setItem("user", JSON.stringify(data.user));
- //         localStorage.setItem("token", data.token);
- //         onLoggedIn(data.user, data.token);
- //       } else {
- //         alert("No such user or invalid credentials");
- //       }
- //     })
- //     .catch((e) => {
- //       alert(`Error: ${e.message}`);
- //     });
- //   };
- //   return (
- //     <Form onSubmit={handleSubmit}>
- //       <Form.Group controlId="formUsername">
- //         <Form.Label>Username:</Form.Label>
- //         <Form.Control
- //           type="text"
- //           value={username}
- //           onChange={(e) => setUsername(e.target.value)}
- //           required
- //           minLength="3" 
- //         />
- //       </Form.Group>
- //       <Form.Group controlId="formPassword">
- //         <Form.Label>Password:</Form.Label>
- //         <Form.Control
- //           type="password"
- //           value={password}
- //           onChange={(e) => setPassword(e.target.value)}
- //           required
- //         />
- //       </Form.Group>
- //       <Button variant="primary" type="submit" className="submit-button">
- //         Submit
- //       </Button>
- //     </Form>
- //   );
- // };
+};
 _s(LoginView, "Lrw7JeD9zj6OUWhT/IH4OIvPKEk=");
 _c = LoginView;
 var _c;
@@ -43019,6 +43085,7 @@ var _s = $RefreshSig$();
 const ProfileUpdate = ({ user, updatedUser })=>{
     _s();
     const token = localStorage.getItem("token");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     // Initialize state with the current user's data
     const [username, setUsername] = (0, _react.useState)(user.Username || "");
     const [password, setPassword] = (0, _react.useState)("");
@@ -43034,7 +43101,9 @@ const ProfileUpdate = ({ user, updatedUser })=>{
             Email: email,
             Birthday: birthday
         };
-        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${user.Username}`, {
+        console.log("Data to be sent:", data); // Add this line to log the data
+        console.log("Token:", token);
+        fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -43043,9 +43112,9 @@ const ProfileUpdate = ({ user, updatedUser })=>{
             body: JSON.stringify(data)
         }).then((response)=>{
             console.log("Response from update: ", response);
-            if (!response.ok) return response.json().then((err)=>{
-                console.error("Update failed: ", err);
-                throw new Error("Update failed");
+            if (!response.ok) return response.text().then((text)=>{
+                console.error("Error: ", text);
+                throw new Error(text);
             });
             return response.json(); // Return user data from the response
         }).then((data)=>{
@@ -43069,7 +43138,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                 children: "Update"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 64,
+                lineNumber: 68,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43079,7 +43148,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 66,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43090,13 +43159,13 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         minLength: "5"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 67,
+                        lineNumber: 71,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 65,
+                lineNumber: 69,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43106,7 +43175,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         children: "Password"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 77,
+                        lineNumber: 81,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43115,13 +43184,13 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 78,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 76,
+                lineNumber: 80,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43131,7 +43200,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         children: "Email"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 86,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43141,13 +43210,13 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 87,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 85,
+                lineNumber: 89,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43157,7 +43226,7 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         children: "Birthday"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 96,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43167,18 +43236,18 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-update.jsx",
-                        lineNumber: 97,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 95,
+                lineNumber: 99,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 104,
+                lineNumber: 108,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -43189,18 +43258,18 @@ const ProfileUpdate = ({ user, updatedUser })=>{
                     children: "Edit Profile"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-update.jsx",
-                    lineNumber: 106,
+                    lineNumber: 110,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-update.jsx",
-                lineNumber: 105,
+                lineNumber: 109,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-update.jsx",
-        lineNumber: 63,
+        lineNumber: 67,
         columnNumber: 5
     }, undefined);
 };
