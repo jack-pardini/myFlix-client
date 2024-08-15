@@ -89,16 +89,16 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         <Card.Header className="text-center fs-1">{movie.Title}</Card.Header>
         <br></br>
         <Card.Text>
-          <strong>Director</strong> - {movie.Director.Name}
+          <strong>Director</strong>: {movie.Director.Name}
         </Card.Text>
         <Card.Text>
-          <strong>Genre</strong> - {movie.Genre.Name}
+          <strong>Genre</strong>: {movie.Genre.Name}
         </Card.Text>
         <Card.Text>
-          <strong>Description</strong> - {movie.Description}
+          <strong>Description</strong>: {movie.Description}
         </Card.Text>
         <Card.Text>
-          <strong>Year</strong> - {movie.Year}
+          <strong>Year</strong>: {movie.Year}
         </Card.Text>
         <Link to={`/`}>
           <button variant="secondary">Back</button>

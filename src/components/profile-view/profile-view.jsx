@@ -5,7 +5,7 @@ import { ProfileUpdate } from './profile-update';
 import FavoriteMovies from './favorite-movies';
 import { ProfileDelete } from "./delete-account";
 
-export const ProfileView = ({ movies }) => {
+export const ProfileView = ({ movies, syncUser }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState();
   const token = localStorage.getItem('token');
@@ -52,7 +52,7 @@ export const ProfileView = ({ movies }) => {
   }, [token]);
 
   const handleUpdatedUser = (updatedData) => {
-    setUser(updatedData);
+    syncUser(updatedData);
   };
 
   if (!user) return <div>Loading...</div>;
