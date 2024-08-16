@@ -65,7 +65,7 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
           setEmail(data.Email);
           setBirthday(data.Birthday.split('T')[0]);
           // Remove reload to update the state immediately
-          // window.location.reload();
+          window.location.reload();
         } else {
           console.error('User data is null or malformed');
         }
