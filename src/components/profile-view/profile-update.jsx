@@ -19,10 +19,14 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
 
     const data = {
       Username: username,
-      Password: password,
       Email: email,
       Birthday: birthday,
     };
+
+    // Only include the password in the payload if it has been changed
+    if (password) {
+      data.Password = password;
+    }
 
     console.log("Data to be sent:", data); // Add this line to log the data
     console.log("Token:", token);
@@ -51,6 +55,12 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
           updatedUser(data);
           //Update localStorage with the new user data
           localStorage.setItem('user', JSON.stringify(data));
+
+          // Optionally log the user out and force a login with the new credentials:
+          // localStorage.removeItem('token');
+          // window.location.href = '/login';
+
+          // Update the form with the new data
           setUsername(data.Username);
           setEmail(data.Email);
           setBirthday(data.Birthday.split('T')[0]);
@@ -84,7 +94,6 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
         <Form.Control
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
       </Form.Group>
 
