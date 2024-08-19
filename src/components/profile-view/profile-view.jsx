@@ -5,7 +5,7 @@ import { ProfileUpdate } from './profile-update';
 import FavoriteMovies from './favorite-movies';
 import { ProfileDelete } from "./delete-account";
 
-export const ProfileView = ({ movies, syncUser }) => {
+export const ProfileView = ({ movies, syncUser, onLoggedOut }) => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState();
   const token = localStorage.getItem('token');
@@ -80,6 +80,7 @@ export const ProfileView = ({ movies, syncUser }) => {
               <ProfileDelete
                 user={user}
                 token={token}
+                onLoggedOut={onLoggedOut}
               />
             </Card.Body>
           </Card>
