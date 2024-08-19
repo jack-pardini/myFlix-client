@@ -24,7 +24,7 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
     };
 
     // Only include the password in the payload if it has been changed
-    if (password) {
+    if (password !=="") {
       data.Password = password;
     }
 
