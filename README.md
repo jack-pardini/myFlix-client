@@ -4,21 +4,11 @@
 MyFlix-client is a frontend web application for the movie database myFlix. This is a movie app that allows users create an account, find movies, view detailed information about the movies, add movies to a list of favorites, and manage their profile. It is built using the JavaScript library React and React Bootstrap, so the user interface is smooth, providing a user-friendly experience. The app showcases movies, including their description, directors information, release date, genre, and many other details.
 
 ## Features
-
-**User Authentication**
-New users can sign up to create an account, and log in and out.
-
-**Movie Browsing**
-Users can browse through a collection of movies that have been fetched from the backend API. 
-
-**Movie Details**
-If a user clicks on a movie, they will see detailed information about the movie.
-
-**User Profile**
-View and update user profile information.
-
-**Favorite Movies**
-A user can add a movie to a list of favorite movies to be accessed later. Once added, the movie can also be removed from the list of favorites.
+- **User Authentication**: New users can sign up to create an account, and log in and out.
+- **Movie Browsing**: Users can browse through a collection of movies that have been fetched from the backend API. 
+- **Movie Details**: If a user clicks on a movie, they will see detailed information about the movie.
+- **User Profile**: View and update user profile information.
+- **Favorite Movies**: A user can add a movie to a list of favorite movies to be accessed later. Once added, the movie can also be removed from the list of favorites.
 
 **Search**
 Search for movies by title using a search bar in the navigation.
@@ -60,17 +50,13 @@ index.html
 ````
 
 ## Components
-**MainView**
-The main page of the application, responsible for routing and managing the application's state.
+**MainView**: The main page of the application, responsible for routing and managing the application's state.
 
-**NavigationBar**
-Provides the top navigation bar with links to different routes and the search bar.
+**NavigationBar**: Provides the top navigation bar with links to different routes and the search bar.
 
-**MovieCard**
-Displays basic movie information and allows users to add or remove movies from their list of favorites.
+**MovieCard**: Displays basic movie information and allows users to add or remove movies from their list of favorites.
 
-**MovieView**
-Displays detailed movie information and allows users to add or remove movies from their list of favorites.
+**MovieView**: Displays detailed movie information and allows users to add or remove movies from their list of favorites.
 
 ## Usage
 - **Signup**: Navigate to the signup page to create a new account.
@@ -90,9 +76,9 @@ npm run build
 
 ## Contributing
 1. Fork the repository.
-2. Create a new branch (git checkout -b feature-branch).
-3. Make your changes and commit them (git commit -m 'Add new feature').
-4. Push to the branch (git push origin feature-branch).
+2. Create a new branch (````git checkout -b feature-branch````).
+3. Make your changes and commit them (````git commit -m 'Add new feature'````).
+4. Push to the branch (````git push origin feature-branch````).
 5. Open a Pull Request.
 
 ## Hosting
