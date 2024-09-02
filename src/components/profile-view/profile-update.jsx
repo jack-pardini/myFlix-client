@@ -78,11 +78,11 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Update</h2>
-      <Form.Group controlId='formUsername'>
-        <Form.Label>Username:</Form.Label>
+      <h2>Update Info</h2>
+      <Form.Group controlId='formUsername' className='mb-4'>
         <Form.Control
           type='text'
+          placeholder='Username'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -90,23 +90,20 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
         />
       </Form.Group>
 
-      <Form.Group controlId='formPassword'>
-        <Form.Label>Password</Form.Label>
-        <Form.Control type='password' onChange={(e) => setPassword(e.target.value)} />
+      <Form.Group controlId='formPassword' className='mb-4'>
+        <Form.Control type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
       </Form.Group>
 
-      <Form.Group controlId='formEmail'>
-        <Form.Label>Email</Form.Label>
-        <Form.Control type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <Form.Group controlId='formEmail' className='mb-4'>
+        <Form.Control type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
       </Form.Group>
 
-      <Form.Group controlId='formBirthday'>
-        <Form.Label>Birthday</Form.Label>
-        <Form.Control type='date' value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
+      <Form.Group controlId='formBirthday' className='mb-4'>
+        <Form.Control type='date' placeholder='Birthday' value={birthday} onChange={(e) => setBirthday(e.target.value)} required />
       </Form.Group>
       <br />
       <div className='d-grid gap-2'>
-        <Button variant='secondary' type='submit'>
+        <Button variant='secondary' type='submit' style={{width: '100%', padding: '10px 0'}}>
           Edit Profile
         </Button>
       </div>
