@@ -1,0 +1,39 @@
+.navbar-full-width {
+  width: 100%;
+  position: fixed; /* Optional: Make the navbar fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+.navbar-full-width .navbar-brand {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.navbar-full-width .navbar-nav {
+  flex-direction: row;
+}
+
+.navbar-full-width .nav-link {
+  margin: 0 15px; /* Optional: Add spacing between nav links */
+}
+
+.navbar-logo {
+  margin-right: 10px; /* Optional: Add spacing between logo and text */
+}
+
+/* Add this to your CSS file */
+.navbar-full-width {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* navigation-bar.css */
+.navbar-title {
+  font-size: 2rem !important; /* Adjust the size as needed */
+}

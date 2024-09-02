@@ -28,10 +28,12 @@ src/
 │   │   └── login-view.jsx
 │   └── main-view/
 │       ├── main-view.jsx
+│       ├── main-view.scss
 │   ├── movie-card/
 │   │   └── movie-card.jsx
 │   ├── movie-view/
 │   │   └── movie-view.jsx
+│       ├── main-view.scss
 │   ├── navigation-bar/
 │   │   └── navigation-bar.jsx
 │   ├── profile-view/

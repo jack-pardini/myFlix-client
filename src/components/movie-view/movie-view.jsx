@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { Button, Card, Row, Col, Container } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
+import './movie-view.scss'; // Import custom CSS for MovieView
 
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams();
@@ -30,6 +31,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
           },
         }
       );
+
       if (!response.ok) {
         const errorDetails = await response.json();
         throw new Error(
@@ -75,36 +77,28 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   };
 
   return (
-    <Container fluid="lg" className="my-5 px-0"> {/* Removed padding */}
-      <Card className="border-0">
-        <Row className="g-4">
-          <Col lg={5}> {/* Reduced width to give more space to the text content */}
-            <Card.Img
-              variant="top"
-              src={movie.ImageURL}
-              className="img-fluid"
-              style={{ maxHeight: "600px", objectFit: "cover" }}
-            />
-          </Col>
-          <Col lg={7}> {/* Expanded this column to take more space */}
-            <Card.Body>
-              <Card.Header className="text-start fs-1">{movie.Title}</Card.Header>
-              <br />
-              <Card.Text>
-                <strong>Director</strong>: {movie.Director.Name}
-              </Card.Text>
-              <Card.Text>
-                <strong>Genre</strong>: {movie.Genre.Name}
-              </Card.Text>
-              <Card.Text>
-                <strong>Description</strong>: {movie.Description}
-              </Card.Text>
-              <Card.Text>
-                <strong>Year</strong>: {movie.Year}
-              </Card.Text>
-              <Link to={`/`}>
-                <Button variant="secondary" className="me-2">Back</Button>
-              </Link>
+    <div className="movie-view-container">
+      <Row className="movie-view-row">
+        <Col md={8} className="movie-info">
+          <Card.Body>
+            <Card.Header className="text-center fs-1">{movie.Title}</Card.Header>
+            <br />
+            <Card.Text>
+              <strong>Director</strong>: {movie.Director.Name}
+            </Card.Text>
+            <Card.Text>
+              <strong>Genre</strong>: {movie.Genre.Name}
+            </Card.Text>
+            <Card.Text>
+              <strong>Description</strong>: {movie.Description}
+            </Card.Text>
+            <Card.Text>
+              <strong>Year</strong>: {movie.Year}
+            </Card.Text>
+            <Link to={`/`}>
+              <Button variant="secondary">Back</Button>
+            </Link>
+            <div>
               {isFavorite ? (
                 <Button variant="danger" onClick={removeFromFavorite}>
                   Remove Favorite
@@ -114,13 +108,22 @@ export const MovieView = ({ movies, user, token, setUser }) => {
                   Add Favorite
                 </Button>
               )}
-            </Card.Body>
-          </Col>
-        </Row>
-      </Card>
-    </Container>
+            </div>
+          </Card.Body>
+        </Col>
+        <Col md={4} className="movie-poster">
+          <Card.Img variant="top" src={movie.ImageURL} className="img-fluid" />
+        </Col>
+      </Row>
+    </div>
   );
 };
+
+
+
+
+
+
 
 
 

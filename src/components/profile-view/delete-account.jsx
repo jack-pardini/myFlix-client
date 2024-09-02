@@ -46,7 +46,7 @@ export const ProfileDelete = ({ user, setUser, token, onLoggedOut }) => {
   };
 
   return (
-    <Button variant="danger" onClick={handleDeleteAccount} style={{width: '100%', padding: '10px 0'}}>
+    <Button variant="danger" onClick={handleDeleteAccount} style={{width: '25%', padding: '10px 0'}}>
       Delete Account
     </Button>
   );

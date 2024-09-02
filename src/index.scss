@@ -1,5 +1,5 @@
-$primary: #8B0000;
-$body-bg: #FFFAF0;
+$primary: #F5F5F5;
+$body-bg: #FFFAFA;
 
 @import '~bootstrap/scss/bootstrap.scss';
 
@@ -24,9 +24,9 @@ $background-color_2: var(--secondary-color);
 $background-color_3: var(--tertiary-color);
 
 :root {
-	--primary-color: #FFFAF0;
+	--primary-color: #FFFAFA;
 	--secondary-color: #008000;
-	--tertiary-color: #8B0000;
+	--tertiary-color: #F5F5F5;
 	--lightest-font-color: white;
 	--focus-red-color: #CD5C5C;
 	--dark-font-color: black;
@@ -60,7 +60,7 @@ body {
 	font-weight: 500px;
 	font-size: var(--bodyfontsize);
 	line-height: 1.5;
-	text-align: justify;
+	text-align: left;
 	color: $color_1;
 	margin-right: 0px;
 	margin-bottom: 20px;
@@ -102,8 +102,7 @@ h3 {
 }
 h4 {
 	font-size: 20px;
-	font-weight: bold;
-	line-height: 0;
+	line-height: 1;
 }
 p {
 	color: $color_1;
@@ -181,7 +180,6 @@ button {
 html {
 	padding: var(--padding-margin-px);
 	margin: var(--padding-margin-px);
-	border: 5px solid var(--dark-font-color);
 	border-radius: 25px;
 	color: $color_1;
 }
