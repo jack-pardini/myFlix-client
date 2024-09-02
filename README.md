@@ -9,9 +9,7 @@ MyFlix-client is a frontend web application for the movie database myFlix. This 
 - **Movie Details**: If a user clicks on a movie, they will see detailed information about the movie.
 - **User Profile**: View and update user profile information.
 - **Favorite Movies**: A user can add a movie to a list of favorite movies to be accessed later. Once added, the movie can also be removed from the list of favorites.
-
-**Search**
-Search for movies by title using a search bar in the navigation.
+- **Search**: Search for movies by title using a search bar in the navigation.
 
 ## Dependencies
 - JavaScript
