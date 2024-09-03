@@ -57,7 +57,7 @@ export const FavoriteMovies = ({ user, setUser, favoriteMovies, setFavoriteMovie
                   <Card.Title>
                     <h2>{movie.Title}</h2>
                   </Card.Title>
-                  <Card.Text>{movie.Director.Name}</Card.Text>
+                  <Card.Text><h4>{movie.Director.Name}</h4></Card.Text>
                   <Link to={`/movies/${movie.id}`}>
                     <Button variant="secondary">Movie Info</Button>
                   </Link>

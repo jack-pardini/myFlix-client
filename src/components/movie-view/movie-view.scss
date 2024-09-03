@@ -1,25 +1,24 @@
 .movie-view-container {
-  padding:30px 0px ;
+  padding: 0; // Remove any container padding
 }
 
 .movie-view-row {
-  display: flex;
-  align-items: flex-start;
+  margin: 0; // Remove any row margins
 }
 
 .movie-info {
-  display: flex;
-  flex-direction: column;
+  padding: 0; // Remove padding from the info column
 }
 
 .movie-poster {
+  padding: 0; // Remove padding from the poster column
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; // Center the image horizontally
+  align-items: center; // Center the image vertically
 }
 
 .movie-poster img {
-  max-width: 100%;
-  height: auto;
-  padding: 10px;
+  width: 100%; // Make the image width 100% of the column
+  height: auto; // Maintain aspect ratio
+  max-width: 100%; // Ensure the image does not exceed the column width
 }
