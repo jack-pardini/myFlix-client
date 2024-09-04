@@ -14,7 +14,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(''); // Search query state
 
   useEffect(() => {
     if (!token) return;
@@ -70,11 +70,52 @@ export const MainView = () => {
     setUser(user);
   };
 
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={onLoggedOut} />
       <Container>
-        <Row className='justify-content-center'>
+        <Row className="justify-content-center">
+          <Col md={8} style={{ position: 'relative' }}>
+            <input
+              type="text"
+              placeholder="Search for a movie..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%', // Full width within its container
+                padding: '10px',
+                borderRadius: '20px', // Rounded edges
+                border: '1px solid #ccc', // Optional: Add a border
+                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', // Optional: Add a subtle shadow
+                outline: 'none',
+                marginBottom: '20px',
+              }}
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                style={{
+                  position: 'absolute',
+                  right: '10px', // Position the "X" inside the input
+                  top: '25%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '27px',
+                  color: '#999',
+                }}
+              >
+                &times;
+              </button>
+            )}
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
           <Routes>
             <Route
               path='/signup'
@@ -123,7 +164,7 @@ export const MainView = () => {
               element={
                 !user ? (
                   <Navigate to='/login' replace />
-                ) : movies.length === 0 ? (
+                ) : filteredMovies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
@@ -137,11 +178,11 @@ export const MainView = () => {
               element={
                 !user ? (
                   <Navigate to='/login' replace />
-                ) : movies.length === 0 ? (
+                ) : filteredMovies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
+                    {filteredMovies.map((movie) => (
                       <Col className='mb-4' key={movie.id} md={3}>
                         <MovieCard movie={movie} user={user} setUser={setUser} />
                       </Col>

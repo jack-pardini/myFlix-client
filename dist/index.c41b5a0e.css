@@ -17,10 +17,10 @@
   display: flex;
 }
 
-.movie-poster img {
+.movie-poster img-fluid {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-height: 500px;
 }
 
 .navbar-full-width {
@@ -13324,7 +13324,7 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: var(--font-weight-700px);
   line-height: 1.5;
   font-style: bold;
@@ -13335,6 +13335,7 @@ h3, .h3 {
   font-weight: var(--font-weight-700px);
   line-height: 1;
   font-style: bold;
+  color: #666;
 }
 
 h4, .h4 {

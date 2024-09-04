@@ -84,10 +84,10 @@ export const MovieView = ({ movies, user, token, setUser }) => {
             <Card.Header><h1>{movie.Title}</h1></Card.Header>
             <br />
             <Card.Text>
-              <h3>{movie.Director.Name}</h3>
+              <h2>{movie.Genre.Name}</h2>
             </Card.Text>
             <Card.Text>
-              <h2>{movie.Genre.Name}</h2>
+              <h3>{movie.Director.Name}</h3>
             </Card.Text>
             <Card.Text>
               <h4>{movie.Description}</h4>
@@ -112,7 +112,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
           </Card.Body>
         </Col>
         <Col md={4} className="movie-poster">
-          <Card.Img variant="top" src={movie.ImageURL} className="img-fluid" />
+          <Card.Img variant="top" src={movie.ImageURL} className="img-fluid"/>
         </Col>
       </Row>
     </div>

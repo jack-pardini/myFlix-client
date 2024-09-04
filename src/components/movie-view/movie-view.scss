@@ -17,8 +17,10 @@
   align-items: center; // Center the image vertically
 }
 
-.movie-poster img {
+.movie-poster img-fluid {
   width: 100%; // Make the image width 100% of the column
   height: auto; // Maintain aspect ratio
-  max-width: 100%; // Ensure the image does not exceed the column width
+  width: 100%; 
+  max-height: 500px;
 }
+
