@@ -28,7 +28,6 @@ src/
 │   │   └── login-view.jsx
 │   └── main-view/
 │       ├── main-view.jsx
-│       ├── main-view.scss
 │   ├── movie-card/
 │   │   └── movie-card.jsx
 │   ├── movie-view/
@@ -36,6 +35,7 @@ src/
 │       ├── main-view.scss
 │   ├── navigation-bar/
 │   │   └── navigation-bar.jsx
+│       ├── navigation-bar.scss
 │   ├── profile-view/
 │   │   ├── delete-account.jsx
 |   |   ├── favorite-movies.jsx
