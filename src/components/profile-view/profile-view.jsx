@@ -19,7 +19,6 @@ export const ProfileView = ({ movies, syncUser, onLoggedOut }) => {
       }
 
       try {
-        console.log(`Fetching data for user: ${storedUser.Username}`);
         const response = await fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}`, {
           method: 'GET',
           headers: {
@@ -28,14 +27,11 @@ export const ProfileView = ({ movies, syncUser, onLoggedOut }) => {
           },
         });
 
-        console.log('Response: ', response);
-
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log('Fetched user data:', data);
 
         if (data) {
           setUser(data);

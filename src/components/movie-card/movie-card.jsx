@@ -27,7 +27,6 @@ export const MovieCard = ({ movie, user, setUser }) => {
       const updatedUser = await response.json();
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
-      console.log("Movie added to favorites");
     } catch (error) {
       console.error("Error adding movie to favorites", error);
       alert(`Error: ${error.message}`);
@@ -55,7 +54,6 @@ export const MovieCard = ({ movie, user, setUser }) => {
       const updatedUser = await response.json();
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
-      console.log("Movie removed from favorites");
     } catch (error) {
       console.error("Error removing movie from favorites", error);
       alert(`Error: ${error.message}`);

@@ -28,9 +28,6 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       data.Password = password;
     }
 
-    console.log('Data to be sent:', data); // Add this line to log the data
-    console.log('Token:', token);
-
     fetch(`https://jp-movies-flix-9cb054b3ade2.herokuapp.com/users/${storedUser.Username}`, {
       method: 'PUT',
       headers: {
@@ -40,7 +37,6 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log('Response from update: ', response);
         if (!response.ok) {
           return response.text().then((text) => {
             console.error('Error: ', text);
@@ -51,8 +47,6 @@ export const ProfileUpdate = ({ user, updatedUser }) => {
       })
       .then((data) => {
         if (data && data.Username) {
-          // Check if data is valid
-          console.log('Updated user data: ', data);
           updatedUser(data);
           //Update localStorage with the new user data
           localStorage.setItem('user', JSON.stringify(data));
